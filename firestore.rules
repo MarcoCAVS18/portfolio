@@ -1,0 +1,32 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Public read — portfolio data
+    // TEMP: allow write for seed — lock down after running npm run seed
+    match /projects/{doc} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    match /tools/{doc} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Write-only — contact form submissions
+    match /contacts/{doc} {
+      allow read: if false;
+      allow create: if request.resource.data.keys().hasAll(['name', 'email', 'message'])
+                    && request.resource.data.name is string
+                    && request.resource.data.name.size() > 0
+                    && request.resource.data.email is string
+                    && request.resource.data.email.matches('.*@.*\\..*')
+                    && request.resource.data.message is string
+                    && request.resource.data.message.size() > 0
+                    && request.resource.data.message.size() <= 2000;
+      allow update, delete: if false;
+    }
+  }
+}
