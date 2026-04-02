@@ -1,44 +1,23 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { Star } from 'lucide-react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Badge from '../../ui/Badge/Badge'
 import StackList from '../../ui/StackList/StackList'
 import Button from '../../ui/Button/Button'
-import BrutalistLoader from '../../ui/BrutalistLoader/BrutalistLoader'
 import { trackEvent } from '../../../services/firebase/analytics'
 
 function PhoneReveal() {
   const containerRef = useRef(null)
-  const [loaded, setLoaded] = useState(false)
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start end', 'end start'] })
-  const y = useTransform(scrollYProgress, [0, 1], ['15%', '-10%'])
+  const y = useTransform(scrollYProgress, [0, 1], ['-5%', '-20%'])
 
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full h-full overflow-hidden cursor-grab active:cursor-grabbing select-none"
-    >
-      {!loaded && (
-        <div className="absolute inset-0 flex items-center justify-center bg-[#F5F5F0] z-10">
-          <BrutalistLoader />
-        </div>
-      )}
-      <motion.div
-        drag
-        dragConstraints={containerRef}
-        dragElastic={0.08}
-        dragMomentum={false}
-        style={{ y, width: '150%', marginLeft: '-25%', opacity: loaded ? 1 : 0 }}
-        whileDrag={{ cursor: 'grabbing' }}
-      >
-        <img
-          src="/images/3966813.ai.png"
-          alt="App preview"
-          onLoad={() => setLoaded(true)}
-          style={{ width: '100%', display: 'block' }}
-          draggable={false}
-        />
-      </motion.div>
+    <div ref={containerRef} className="w-full h-full overflow-hidden">
+      <motion.img
+        src="/images/3966813.ai.png"
+        alt="App preview"
+        style={{ y, width: '100%', display: 'block', willChange: 'transform' }}
+      />
     </div>
   )
 }

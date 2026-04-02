@@ -14,10 +14,10 @@ const inputClass =
   'border-[3px] border-black px-4 py-3 font-bold text-sm bg-white focus:outline-none focus:shadow-[4px_4px_0px_black] transition-shadow w-full'
 
 const socials = [
-  { id: 'whatsapp',  label: 'WhatsApp',  icon: MessageCircle, href: 'https://wa.me/your-number',           color: '#25D366' },
-  { id: 'instagram', label: 'Instagram', icon: Instagram,     href: 'https://instagram.com/your-handle',   color: '#E1306C' },
-  { id: 'linkedin',  label: 'LinkedIn',  icon: Linkedin,      href: 'https://linkedin.com/in/your-handle', color: '#0A66C2' },
-  { id: 'github',    label: 'GitHub',    icon: Github,        href: 'https://github.com/MarcoCAVS18',      color: '#333333' },
+  { id: 'whatsapp',  label: 'WhatsApp',  icon: MessageCircle, href: 'https://api.whatsapp.com/send/?phone=5493417227916&text&type=phone_number&app_absent=0', color: '#25D366' },
+  { id: 'instagram', label: 'Instagram', icon: Instagram,     href: 'https://www.instagram.com/marco.piermatei/',                                            color: '#E1306C' },
+  { id: 'linkedin',  label: 'LinkedIn',  icon: Linkedin,      href: 'https://www.linkedin.com/in/marco-piermatei/',                                          color: '#0A66C2' },
+  { id: 'github',    label: 'GitHub',    icon: Github,        href: 'https://github.com/MarcoCAVS18',                                                         color: '#333333' },
 ]
 
 const steps = [
@@ -299,14 +299,14 @@ export default function Contact() {
               </p>
             )}
 
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-col md:flex-row md:items-center md:justify-between gap-2">
               <motion.button
                 type="submit"
                 disabled={status === 'loading'}
                 whileHover={{ y: -3, boxShadow: '6px 9px 0px black' }}
                 whileTap={{ y: 0, boxShadow: '3px 3px 0px black' }}
                 transition={{ type: 'spring', stiffness: 400, damping: 15 }}
-                className="btn-brutal bg-yellow-400 px-8 py-3 font-black uppercase text-sm tracking-widest disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                className="btn-brutal bg-yellow-400 px-8 py-3 font-black uppercase text-sm tracking-widest disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer w-full md:w-auto"
               >
                 {status === 'loading' ? 'Sending...' : 'Send Message →'}
               </motion.button>
@@ -324,7 +324,7 @@ export default function Contact() {
 
         {/* Social buttons + Resume */}
         <div className="flex flex-col justify-between gap-3 lg:w-52 lg:self-stretch">
-          <div className="flex flex-row flex-wrap lg:flex-col gap-3">
+          <div className="grid grid-cols-2 lg:flex lg:flex-col gap-3">
             {socials.map(({ id, ...props }) => (
               <SocialButton key={id} {...props} />
             ))}
