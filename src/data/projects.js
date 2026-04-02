@@ -12,15 +12,14 @@ export const featuredProject = {
 
 export const projects = [
   {
-    id: 'gestor-turnos',
-    title: 'Gestor de Turnos',
+    id: 'caaf-memory',
+    title: 'CAAF Memory',
     description:
-      'Shift management web app to track work hours, calculate weekly earnings, and stay on top of your schedule.',
+      'Developed rapidly to meet company requirements — secure and production-ready from day one.',
     stack: ['React', 'Firebase', 'Tailwind'],
-    demoUrl: 'https://orary.app',
-    githubUrl: 'https://github.com/MarcoCAVS18/gestor-turnos',
-    preview: null,
-    logo: null,
+    demoUrl: 'https://caaf.netlify.app/',
+    githubUrl: 'https://github.com/MarcoCAVS18/caaf-memory',
+    builtWithClaude: true,
   },
   {
     id: 'portfolio',
@@ -28,20 +27,16 @@ export const projects = [
     description:
       'Modular one-page portfolio built with React, Vite, and TailwindCSS using a neubrutalism design system.',
     stack: ['React', 'Vite', 'Tailwind'],
-    demoUrl: 'https://orary.app',
-    githubUrl: 'https://github.com/MarcoCAVS18/gestor-turnos',
-    preview: null,
-    logo: null,
+    demoUrl: '#',
+    githubUrl: 'https://github.com/MarcoCAVS18/marco-portfolio',
   },
   {
-    id: 'firebase-hooks',
-    title: 'Firebase Hooks',
+    id: 'pepperoni',
+    title: 'Pepperoni',
     description:
-      'Lightweight React hook library for Firestore — real-time data, auth state, and storage uploads.',
-    stack: ['React', 'Firebase'],
-    demoUrl: 'https://orary.app',
-    githubUrl: 'https://github.com/MarcoCAVS18/gestor-turnos',
-    preview: null,
-    logo: null,
+      'Pizza store app built to learn proper e-commerce development — user authentication and full store functionality.',
+    stack: ['React', 'Firebase', 'Tailwind'],
+    demoUrl: 'https://pizzita.netlify.app/',
+    githubUrl: 'https://github.com/MarcoCAVS18/pizzahost',
   },
 ]

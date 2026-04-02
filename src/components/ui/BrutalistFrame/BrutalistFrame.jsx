@@ -1,9 +1,39 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import BrutalistLoader from '../BrutalistLoader/BrutalistLoader'
 import { cn } from '../../../utils/cn'
 
-export default function BrutalistFrame({ src, alt = '', className }) {
+const SLIDE_DURATION = 6000   // ms each image is shown
+const LOADER_HOLD    = 350    // ms loader is visible before switching src
+
+export default function BrutalistFrame({ src, images, alt = '', className }) {
+  const srcs = images ?? (src ? [src] : [])
+  const [index, setIndex] = useState(0)
+  const [activeSrc, setActiveSrc] = useState(srcs[0] ?? '')
   const [loaded, setLoaded] = useState(false)
+  const [transitioning, setTransitioning] = useState(false)
+  const timerRef = useRef(null)
+
+  // Auto-cycle when multiple images provided
+  useEffect(() => {
+    if (srcs.length <= 1) return
+
+    timerRef.current = setTimeout(() => {
+      setTransitioning(true)
+      setLoaded(false)
+
+      setTimeout(() => {
+        const next = (index + 1) % srcs.length
+        setIndex(next)
+        setActiveSrc(srcs[next])
+        setTransitioning(false)
+      }, LOADER_HOLD)
+    }, SLIDE_DURATION)
+
+    return () => clearTimeout(timerRef.current)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [index, loaded])
+
+  const showLoader = !loaded || transitioning
 
   return (
     <div className={cn('relative', className)}>
@@ -42,18 +72,19 @@ export default function BrutalistFrame({ src, alt = '', className }) {
         {/* Loader */}
         <div className={cn(
           'absolute inset-0 flex items-center justify-center bg-white transition-opacity duration-200',
-          loaded ? 'opacity-0 pointer-events-none' : 'opacity-100',
+          showLoader ? 'opacity-100' : 'opacity-0 pointer-events-none',
         )}>
           <BrutalistLoader />
         </div>
 
         <img
-          src={src}
+          key={activeSrc}
+          src={activeSrc}
           alt={alt}
           onLoad={() => setLoaded(true)}
           className={cn(
             'w-full h-full object-cover object-top transition-opacity duration-500',
-            loaded ? 'opacity-100' : 'opacity-0',
+            loaded && !transitioning ? 'opacity-100' : 'opacity-0',
           )}
         />
       </div>

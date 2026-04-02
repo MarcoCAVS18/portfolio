@@ -81,9 +81,9 @@ export default function Hero() {
         transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
       >
         <BrutalistFrame
-          src="/images/yop.png"
+          images={['/images/yop.png', '/images/yop2.png', '/images/yop3.png']}
           alt="Marco"
-          className="w-64 md:w-80"
+          className="w-64 md:w-80 rotate-[10deg]"
         />
       </motion.div>
 

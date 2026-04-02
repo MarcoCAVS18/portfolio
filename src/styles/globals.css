@@ -17,6 +17,12 @@
   .brutal-shadow-text {
     text-shadow: 3px 3px 0px black;
   }
+
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 }
 
 @layer components {

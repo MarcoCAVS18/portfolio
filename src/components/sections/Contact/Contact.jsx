@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { MessageCircle, Instagram, Linkedin, Github, ChevronLeft, ChevronRight } from 'lucide-react'
+import { MessageCircle, Instagram, Linkedin, Github, ChevronLeft, ChevronRight, FileDown, User, Mail, Clock, Trash2, RefreshCw, LogOut } from 'lucide-react'
 import SectionTitle from '../../ui/SectionTitle/SectionTitle'
 import SocialButton from '../../ui/SocialButton/SocialButton'
+import Button from '../../ui/Button/Button'
 import Modal from '../../ui/Modal/Modal'
 import Shape from '../../ui/Shape/Shape'
 import SceneDecor from '../../ui/SceneDecor/SceneDecor'
@@ -31,15 +32,15 @@ const steps = [
         <div className="border-[3px] border-black bg-neutral-50 p-4 font-mono text-xs flex flex-col gap-2">
           <div className="flex gap-2">
             <span className="text-neutral-400 w-20 shrink-0">name</span>
-            <span className="font-bold">"John Doe"</span>
+            <span className="font-bold">"Marco Piermatei"</span>
           </div>
           <div className="flex gap-2">
             <span className="text-neutral-400 w-20 shrink-0">email</span>
-            <span className="font-bold">"john@example.com"</span>
+            <span className="font-bold">"marcopiermatei1@gmail.com"</span>
           </div>
           <div className="flex gap-2">
             <span className="text-neutral-400 w-20 shrink-0">message</span>
-            <span className="font-bold">"Hey, I'd love to work with you..."</span>
+            <span className="font-bold">"Hey Marco, this is just a test! ..."</span>
           </div>
           <div className="flex gap-2">
             <span className="text-neutral-400 w-20 shrink-0">createdAt</span>
@@ -50,18 +51,91 @@ const steps = [
     ),
   },
   {
-    label: 'Custom Platform',
+    label: 'Admin Dashboard',
     content: (
       <div className="flex flex-col gap-4 text-sm">
         <p className="font-bold text-neutral-600">
-          I also built a private dashboard that pulls messages from Firebase and
-          displays them in a clean, readable format — so I never miss anything.
+          I built a private dashboard on top of Firebase that lets me read and
+          manage every message in one place.
         </p>
-        <div className="border-[3px] border-black bg-neutral-100 h-48 flex items-center justify-center">
-          <span className="font-black text-neutral-400 uppercase text-xs tracking-widest">
-            Dashboard screenshot coming soon
-          </span>
+        {/* Miniature dashboard mockup */}
+        <div className="border-[3px] border-black bg-neutral-100 overflow-hidden select-none">
+          {/* Top bar */}
+          <div className="bg-white border-b-[2px] border-black px-3 py-2 flex items-center justify-between">
+            <div>
+              <p className="font-black text-[10px] uppercase tracking-tight">Contacts</p>
+              <p className="font-bold text-[8px] text-neutral-400">1 message</p>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <div className="border-[1.5px] border-black px-1.5 py-0.5 flex items-center gap-1">
+                <RefreshCw size={7} strokeWidth={3} />
+                <span className="font-black text-[7px] uppercase">Refresh</span>
+              </div>
+              <div className="border-[1.5px] border-black px-1.5 py-0.5 flex items-center gap-1">
+                <LogOut size={7} strokeWidth={3} />
+                <span className="font-black text-[7px] uppercase">Logout</span>
+              </div>
+            </div>
+          </div>
+          {/* Contact card */}
+          <div className="p-3">
+            <div className="bg-white border-[2px] border-black shadow-[2px_2px_0px_black] p-3 flex flex-col gap-2 select-none">
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex flex-col gap-0.5">
+                  <div className="flex items-center gap-1">
+                    <User size={9} strokeWidth={3} />
+                    <span className="font-black text-[9px] uppercase">Marco Piermatei</span>
+                  </div>
+                  <div className="flex items-center gap-1 text-neutral-400">
+                    <Mail size={8} strokeWidth={2.5} />
+                    <span className="font-bold text-[8px]">marcopiermatei1@gmail.com</span>
+                  </div>
+                </div>
+                <div className="border-[1.5px] border-black bg-red-400 px-1.5 py-0.5 flex items-center gap-1 shrink-0">
+                  <Trash2 size={7} strokeWidth={3} />
+                  <span className="font-black text-[7px] uppercase">Delete</span>
+                </div>
+              </div>
+              <p className="font-bold text-[8px] text-neutral-600 border-l-[2px] border-yellow-400 pl-2 leading-relaxed">
+                "Hey Marco, this is just a test! ..."
+              </p>
+              <div className="flex items-center gap-1 text-neutral-400">
+                <Clock size={7} strokeWidth={2.5} />
+                <span className="font-bold text-[7px]">19 Mar 2026, 10:42</span>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+    ),
+  },
+  {
+    label: 'How to Access',
+    content: (
+      <div className="flex flex-col gap-4 text-sm">
+        <p className="font-bold text-neutral-600">
+          The dashboard lives at <code className="bg-neutral-100 border-[2px] border-black px-1.5 py-0.5 font-mono text-xs">/admin</code> on
+          this site. It's protected by a token gate — just a password field backed by a{' '}
+          <span className="font-black">FastAPI</span> API that validates the bearer token before
+          showing anything.
+        </p>
+        <div className="border-[3px] border-black bg-neutral-50 p-4 flex flex-col gap-2 font-mono text-xs">
+          <div className="flex gap-2">
+            <span className="text-neutral-400 shrink-0 select-none">URL</span>
+            <span className="font-bold">marcoportfolio.com/admin</span>
+          </div>
+          <div className="flex gap-2 select-none">
+            <span className="text-neutral-400 shrink-0">Auth</span>
+            <span className="font-bold">Bearer token <span className="text-neutral-400">(private)</span></span>
+          </div>
+          <div className="flex gap-2 select-none">
+            <span className="text-neutral-400 shrink-0">API</span>
+            <span className="font-bold">FastAPI + Firebase Admin SDK</span>
+          </div>
+        </div>
+        <p className="font-bold text-xs text-neutral-400 border-l-[3px] border-yellow-400 pl-3">
+          For obvious reasons I can't share the token publicly — but you're welcome to ask if we're already in touch.
+        </p>
       </div>
     ),
   },
@@ -248,11 +322,25 @@ export default function Contact() {
           </form>
         )}
 
-        {/* Social buttons */}
-        <div className="flex flex-row flex-wrap lg:flex-col gap-3 lg:w-52">
-          {socials.map(({ id, ...props }) => (
-            <SocialButton key={id} {...props} />
-          ))}
+        {/* Social buttons + Resume */}
+        <div className="flex flex-col justify-between gap-3 lg:w-52 lg:self-stretch">
+          <div className="flex flex-row flex-wrap lg:flex-col gap-3">
+            {socials.map(({ id, ...props }) => (
+              <SocialButton key={id} {...props} />
+            ))}
+          </div>
+
+          <div className="border-t-[2px] border-neutral-200 pt-3">
+            <Button
+              as="a"
+              href="#"
+              variant="secondary"
+              className="w-full flex items-center justify-center gap-2"
+            >
+              <FileDown size={15} strokeWidth={2.5} />
+              Resume PDF
+            </Button>
+          </div>
         </div>
 
       </div>
