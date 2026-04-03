@@ -44,16 +44,17 @@ const projects = [
     order: 0,
   },
   {
-    id: 'gestor-turnos',
-    title: 'Gestor de Turnos',
+    id: 'caaf-memory',
+    title: 'CAAF Memory',
     description:
-      'Shift management web app to track work hours, calculate weekly earnings, and stay on top of your schedule.',
+      'Developed rapidly to meet company requirements — secure and production-ready from day one.',
     stack: ['React', 'Firebase', 'Tailwind'],
-    demoUrl: 'https://orary.app',
-    githubUrl: 'https://github.com/MarcoCAVS18/gestor-turnos',
+    demoUrl: 'https://caaf.netlify.app/',
+    githubUrl: 'https://github.com/MarcoCAVS18/caaf-memory',
     preview: null,
     logo: null,
     featured: false,
+    builtWithClaude: true,
     order: 1,
   },
   {
@@ -62,25 +63,102 @@ const projects = [
     description:
       'Modular one-page portfolio built with React, Vite, and TailwindCSS using a neubrutalism design system.',
     stack: ['React', 'Vite', 'Tailwind'],
-    demoUrl: 'https://orary.app',
-    githubUrl: 'https://github.com/MarcoCAVS18/gestor-turnos',
+    demoUrl: 'https://marcop.netlify.app/',
+    githubUrl: 'https://github.com/MarcoCAVS18/marco-portfolio',
     preview: null,
     logo: null,
     featured: false,
     order: 2,
   },
   {
-    id: 'firebase-hooks',
-    title: 'Firebase Hooks',
+    id: 'pepperoni',
+    title: 'Pepperoni',
     description:
-      'Lightweight React hook library for Firestore — real-time data, auth state, and storage uploads.',
-    stack: ['React', 'Firebase'],
-    demoUrl: 'https://orary.app',
-    githubUrl: 'https://github.com/MarcoCAVS18/gestor-turnos',
+      'Pizza store app built to learn proper e-commerce development — user authentication and full store functionality.',
+    stack: ['React', 'Firebase', 'Tailwind'],
+    demoUrl: 'https://pizzita.netlify.app/',
+    githubUrl: 'https://github.com/MarcoCAVS18/pizzahost',
     preview: null,
     logo: null,
     featured: false,
     order: 3,
+  },
+]
+
+// ─── Timeline ─────────────────────────────────────────────────────────────────
+const timeline = [
+  {
+    id: '2020',
+    year: '2020',
+    location: 'Rosario, Argentina',
+    title: 'First Steps',
+    description:
+      'Wrote my first lines of Java and Python, getting a feel for OOP and logic. On the creative side, I experimented with SparkAR — building Facebook filters with flat and 3D objects.',
+    skills: ['Java', 'Python', 'OOP', 'SparkAR'],
+    projects: [{ name: 'SparkAR Filters' }],
+  },
+  {
+    id: '2022',
+    year: '2022',
+    location: 'Italy',
+    title: 'Code Across Borders',
+    description:
+      'Traveled to Italy to claim citizenship. Between that and working night shifts at a hotel, I kept coding — mentoring friends on Python frameworks as the world slowly reopened.',
+    skills: ['Python', 'Tkinter', 'FastAPI', 'Django'],
+    projects: [],
+  },
+  {
+    id: '2023',
+    year: '2023',
+    location: 'Barcelona, Spain',
+    title: 'React Changed Everything',
+    description:
+      'Moved to Barcelona, working in Customer Service by day and diving deep into React by night. Completed a Coderhouse course and shipped internal tools that made my whole team more efficient.',
+    skills: ['React', 'JavaScript', 'Vite', 'Firebase'],
+    projects: [
+      { name: 'Empanamia', url: 'https://github.com/MarcoCAVS18/Empanamia' },
+      { name: 'Internal Tools' },
+    ],
+  },
+  {
+    id: '2024',
+    year: '2024',
+    location: 'Australia',
+    title: 'Building on the Move',
+    description:
+      'Worked hands-on roles — housekeeping, cellar hand, grain handler — while leveling up my UI skills. Launched Pepperoni: a responsive platform for gastronomy businesses, focused on pizzerias.',
+    skills: ['Tailwind CSS', 'Material UI', 'React'],
+    projects: [
+      { name: 'Pepperoni', url: 'https://github.com/MarcoCAVS18/pizzahost' },
+    ],
+  },
+  {
+    id: '2025',
+    year: '2025',
+    location: 'Remote',
+    title: 'Full Throttle',
+    description:
+      'A year of serious growth. Integrated AI tools into my workflow, wrote automation scripts, explored TypeScript, and tackled more complex architectures.',
+    skills: ['TypeScript', 'LLMs', 'Scripts', 'Codeviz'],
+    projects: [
+      { name: 'Orary', url: 'https://github.com/MarcoCAVS18/gestor-turnos' },
+      { name: 'Side projects' },
+      { name: 'Contact-cards', url: 'https://github.com/MarcoCAVS18/contact-cards' },
+    ],
+  },
+  {
+    id: '2026',
+    year: '2026',
+    location: 'New Zealand',
+    title: 'Putting It All Together',
+    description:
+      "Orary is live. Built with Firebase, Firestore, OAuth, Google Cloud, and custom domain deployment — it pushed me into real infrastructure territory. New APIs, new lessons, and a clearer sense of where I'm heading.",
+    skills: ['Firebase', 'OAuth', 'Google Cloud', 'Firestore', 'DNS'],
+    projects: [
+      { name: 'Orary', url: 'https://github.com/MarcoCAVS18/gestor-turnos' },
+      { name: 'Works', url: 'https://github.com/MarcoCAVS18/beluymarco', private: true },
+      { name: 'CAAF Memory', url: 'https://github.com/MarcoCAVS18/caaf-memory' },
+    ],
   },
 ]
 
@@ -113,6 +191,12 @@ async function seed() {
   for (const { id, ...data } of projects) {
     await writeWithRetry(doc(db, 'projects', id), data)
     console.log(`  ✓ projects/${id}`)
+  }
+
+  console.log('Seeding timeline...')
+  for (const { id, ...data } of timeline) {
+    await writeWithRetry(doc(db, 'timeline', id), data)
+    console.log(`  ✓ timeline/${id}`)
   }
 
   console.log('Done.')

@@ -1,3 +1,4 @@
+import { Lock } from 'lucide-react'
 import { cn } from '../../../utils/cn'
 import ScrollReveal from '../../ui/ScrollReveal/ScrollReveal'
 
@@ -52,14 +53,29 @@ function CardBody({ year, title, description, location, skills, projects, isRigh
               <span className="text-[10px] font-black uppercase tracking-widest text-neutral-400 mr-1">
                 Projects
               </span>
-              {visibleProjects.map((p) => (
-                <span
-                  key={p}
-                  className="text-xs font-bold bg-black text-white border border-black px-2 py-0.5"
-                >
-                  {p}
-                </span>
-              ))}
+              {visibleProjects.map((p) => {
+                const hasLink = !!p.url
+                const base = 'inline-flex items-center gap-1 text-xs font-bold bg-black text-white border border-black px-2 py-0.5'
+                if (hasLink) {
+                  return (
+                    <a
+                      key={p.name}
+                      href={p.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={cn(base, 'hover:bg-yellow-300 hover:text-black transition-colors')}
+                    >
+                      {p.private && <Lock size={9} aria-label="Private repository" />}
+                      {p.name}
+                    </a>
+                  )
+                }
+                return (
+                  <span key={p.name} className={cn(base, 'select-none opacity-70')}>
+                    {p.name}
+                  </span>
+                )
+              })}
               {hiddenProjects.length > 0 && (
                 <div className="relative group/tooltip">
                   <button className="text-xs font-black border-2 border-black px-2 py-0.5 hover:bg-yellow-300 transition-colors cursor-default">
@@ -72,7 +88,7 @@ function CardBody({ year, title, description, location, skills, projects, isRigh
                       isRight ? 'right-0' : 'left-0',
                     )}
                   >
-                    {hiddenProjects.join(' · ')}
+                    {hiddenProjects.map(p => p.name).join(' · ')}
                     <span
                       className={cn(
                         'absolute top-full border-4 border-transparent border-t-black',

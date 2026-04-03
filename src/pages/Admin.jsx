@@ -238,6 +238,11 @@ function Dashboard({ token, onLogout }) {
 export default function Admin() {
   const [token, setToken] = useState(() => sessionStorage.getItem(SESSION_KEY) || null)
 
+  useEffect(() => {
+    document.title = 'Admin — Marco Piermatei'
+    return () => { document.title = 'Marco Piermatei — Frontend Developer' }
+  }, [])
+
   function handleLogout() {
     sessionStorage.removeItem(SESSION_KEY)
     setToken(null)

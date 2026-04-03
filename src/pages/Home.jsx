@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Navbar from '../components/layout/Navbar/Navbar.jsx'
 import Section from '../components/layout/Section/Section.jsx'
 import Hero from '../components/sections/Hero/Hero.jsx'
@@ -7,6 +8,10 @@ import Timeline from '../components/sections/Timeline/Timeline.jsx'
 import Contact from '../components/sections/Contact/Contact.jsx'
 
 export default function Home() {
+  useEffect(() => {
+    document.title = 'Marco Piermatei — Frontend Developer'
+  }, [])
+
   return (
     <>
       <Navbar />

@@ -27,7 +27,7 @@ export const projects = [
     description:
       'Modular one-page portfolio built with React, Vite, and TailwindCSS using a neubrutalism design system.',
     stack: ['React', 'Vite', 'Tailwind'],
-    demoUrl: '#',
+    demoUrl: 'https://marcop.netlify.app/',
     githubUrl: 'https://github.com/MarcoCAVS18/marco-portfolio',
   },
   {
