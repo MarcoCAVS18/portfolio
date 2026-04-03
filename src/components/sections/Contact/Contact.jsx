@@ -333,7 +333,8 @@ export default function Contact() {
           <div className="border-t-[2px] border-neutral-200 pt-3">
             <Button
               as="a"
-              href="#"
+              href="/Resume-Marco-Piermatei.pdf"
+              download="Resume-Marco-Piermatei.pdf"
               variant="secondary"
               className="w-full flex items-center justify-center gap-2"
             >
