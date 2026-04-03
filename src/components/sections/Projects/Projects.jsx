@@ -13,10 +13,13 @@ export default function Projects() {
   const { featured, projects, loading } = useProjects()
 
   return (
-    <div ref={ref} style={style} className="relative overflow-hidden">
-      <SceneDecor variants={['dots-tl', 'lines-bl']} />
-      <Shape color="black"   size={20} animation="float"     delay={0}  className="top-4 right-10" />
-      <Shape color="yellow"  size={14} animation="oscillate" delay={1.5} className="bottom-6 right-6" />
+    <div ref={ref} style={style} className="relative">
+      {/* Decorative elements in isolated clipped wrapper so they don't constrain children overflow */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <SceneDecor variants={['dots-tl', 'lines-bl']} />
+        <Shape color="black"   size={20} animation="float"     delay={0}  className="top-4 right-10" />
+        <Shape color="yellow"  size={14} animation="oscillate" delay={1.5} className="bottom-6 right-6" />
+      </div>
 
       <SectionTitle title="Projects" subtitle="Things I've built." />
 
@@ -45,11 +48,11 @@ export default function Projects() {
             className="group mt-4 flex items-center justify-between w-full border-[3px] border-black bg-yellow-300 px-8 py-5 rounded-xl font-bold text-lg shadow-[6px_6px_0px_black] hover:shadow-[8px_8px_0px_black] hover:-translate-y-1 transition-all duration-150 cursor-pointer"
           >
             <span className="flex items-center gap-4">
-              <span className="font-mono text-xs tracking-[0.3em] opacity-40 select-none"><span className="sm:hidden">· ·</span><span className="hidden sm:inline">· · · · · ·</span></span>
+              <span className="font-mono text-xs tracking-[0.3em] opacity-40 select-none"><span className="hidden md:inline lg:hidden">· ·</span><span className="hidden lg:inline">· · · · · ·</span></span>
               <span>See all my projects</span>
             </span>
             <span className="flex items-center gap-4">
-              <span className="font-mono text-xs tracking-[0.3em] opacity-40 select-none"><span className="sm:hidden">· ·</span><span className="hidden sm:inline">· · · · · ·</span></span>
+              <span className="font-mono text-xs tracking-[0.3em] opacity-40 select-none"><span className="hidden md:inline lg:hidden">· ·</span><span className="hidden lg:inline">· · · · · ·</span></span>
               <ArrowUpRight size={22} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-150" />
             </span>
           </a>
