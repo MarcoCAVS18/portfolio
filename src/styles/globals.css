@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+body {
+  overflow-x: clip;
+}
+
 @theme {
   --font-sans: 'Space Grotesk', sans-serif;
 }
