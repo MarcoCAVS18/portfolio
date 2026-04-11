@@ -352,7 +352,7 @@ export default function FeaturedProjectCard({ title, description, stack = [], de
       </div>
 
       {/* ── Right — phone mockups ── */}
-      <div className="bg-[#F0EFE9] border-l-[3px] border-black min-h-[480px] lg:min-h-0 overflow-visible">
+      <div className="bg-[#F0EFE9] border-l-[3px] border-black min-h-[480px] lg:min-h-0 overflow-hidden">
         <PhoneScreens />
       </div>
 
